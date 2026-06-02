@@ -6,7 +6,7 @@ shown in Codex as **AIDP Migration Workbench**. The plugin helps Codex inspect
 AIDP runtime state, deploy Workbench assets, and operate medallion-style AIDP
 projects.
 
-![AIDP Migration Workbench](plugins/oci-cli-workbench/assets/logo.png)
+![AIDP Migration Workbench prompts](plugins/oci-cli-workbench/assets/screenshots/aidp-workbench-prompts.png)
 
 ## Install From GitHub
 
