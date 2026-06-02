@@ -16,7 +16,7 @@ local CLI context, repository state, and Git workflow to inspect source
 evidence, plan AIDP migrations, validate workspaces, and move OCI/AIDP delivery
 forward with repeatable commands.
 
-https://github.com/jgangini/codex-plugin-oci-aidp-migration-workbench/raw/main/plugins/oci-cli-workbench/assets/videos/oci-cli-git-demo.mp4
+https://github.com/user-attachments/assets/9586628d-3cba-4521-a6af-053e59a76974
 
 ## Install From GitHub
 
