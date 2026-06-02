@@ -8,13 +8,13 @@ projects.
 
 ![AIDP Migration Workbench prompts](plugins/oci-cli-workbench/assets/screenshots/aidp-workbench-prompts.png)
 
-## OCI CLI Skill
+## `oci-bootstrap-uv` Skill
 
-The OCI CLI skill is the operating layer for AIDP Migration Workbench: it lets
-Codex work as a precise, project-aware MCP-style OCI assistant that uses the
-local CLI context, repository state, and Git workflow to inspect source
-evidence, plan AIDP migrations, validate workspaces, and move OCI/AIDP delivery
-forward with repeatable commands.
+`oci-bootstrap-uv` is the OCI bootstrap and control entry point for AIDP
+Migration Workbench. It prepares the repo-local Python 3.11 + `uv`
+environment, installs and validates the local OCI CLI toolchain, and checks the
+`codex-oci` wrapper so Codex can use the local CLI context, repository state,
+and Git workflow to inspect, plan, validate, and move OCI/AIDP work forward.
 
 https://github.com/user-attachments/assets/9586628d-3cba-4521-a6af-053e59a76974
 
