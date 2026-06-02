@@ -8,12 +8,13 @@ projects.
 
 ![AIDP Migration Workbench prompts](plugins/oci-cli-workbench/assets/screenshots/aidp-workbench-prompts.png)
 
-## Demo
+## OCI CLI Skill
 
-This demo shows how the OCI CLI skill can work as a precise, project-aware MCP
-style assistant for building OCI projects: Codex uses the local CLI context,
-Git workflow, and plugin skills to inspect, plan, validate, and move OCI/AIDP
-work forward from the repository.
+The OCI CLI skill is the operating layer for AIDP Migration Workbench: it lets
+Codex work as a precise, project-aware MCP-style OCI assistant that uses the
+local CLI context, repository state, and Git workflow to inspect source
+evidence, plan AIDP migrations, validate workspaces, and move OCI/AIDP delivery
+forward with repeatable commands.
 
 https://github.com/jgangini/codex-plugin-oci-aidp-migration-workbench/raw/main/plugins/oci-cli-workbench/assets/videos/oci-cli-git-demo.mp4
 
