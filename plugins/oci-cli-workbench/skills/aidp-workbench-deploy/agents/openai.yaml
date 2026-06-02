@@ -1,0 +1,7 @@
+interface:
+  display_name: "AIDP Workbench Deploy"
+  short_description: "Deploy AIDP notebooks and jobs"
+  icon_small: "./assets/icon.svg"
+  icon_large: "./assets/logo.png"
+  brand_color: "#C74634"
+  default_prompt: "Use $aidp-workbench-deploy to render notebooks, sync them to AIDP Workbench, and create or run ref, batch, stream, or refresh jobs."

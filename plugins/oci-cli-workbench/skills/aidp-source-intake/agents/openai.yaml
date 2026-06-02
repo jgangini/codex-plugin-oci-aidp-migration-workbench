@@ -1,0 +1,7 @@
+interface:
+  display_name: "AIDP Source Intake"
+  short_description: "Plan AIDP migrations and greenfield projects from `.source` evidence."
+  icon_small: "./assets/icon.svg"
+  icon_large: "./assets/logo.png"
+  brand_color: "#C74634"
+  default_prompt: "Use $aidp-source-intake to inspect `.source`, infer the source platform, and turn the available evidence into an AIDP migration or project plan."

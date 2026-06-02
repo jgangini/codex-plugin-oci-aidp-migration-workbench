@@ -1,0 +1,7 @@
+interface:
+  display_name: "AIDP Platform Bootstrap"
+  short_description: "Create AIDP and apply the medallion baseline"
+  icon_small: "./assets/icon.svg"
+  icon_large: "./assets/logo.png"
+  brand_color: "#C74634"
+  default_prompt: "Use $aidp-platform-bootstrap to plan or create an AIDP platform, then align it with the repo's medallion workspace and control-layer blueprint."

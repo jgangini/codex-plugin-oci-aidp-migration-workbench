@@ -1,0 +1,7 @@
+interface:
+  display_name: "OCI Bootstrap with uv"
+  short_description: "Bootstrap OCI CLI projects with uv"
+  icon_small: "./assets/icon.svg"
+  icon_large: "./assets/logo.png"
+  brand_color: "#C74634"
+  default_prompt: "Use $oci-bootstrap-uv to prepare this repo with uv and validate OCI CLI access."

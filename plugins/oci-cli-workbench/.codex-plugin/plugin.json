@@ -1,0 +1,42 @@
+{
+    "name":  "oci-cli-workbench",
+    "version":  "0.1.10",
+    "description":  "Cross-platform AIDP migration and project delivery plugin driven by `.source` evidence and local OCI CLI execution.",
+    "author":  {
+                   "name":  "Joel Gangini",
+                   "url":  "https://github.com/jgangini"
+               },
+    "homepage":  "https://github.com/jgangini/codex-plugin-oci-aidp-migration-workbench",
+    "repository":  "https://github.com/jgangini/codex-plugin-oci-aidp-migration-workbench.git",
+    "license":  "UNLICENSED",
+    "keywords":  [
+                     "oci",
+                     "oracle-cloud",
+                     "cli",
+                     "aidp",
+                     "ai-data-platform",
+                     "migration",
+                     "medallion"
+                 ],
+    "skills":  "./skills/",
+    "interface":  {
+                      "displayName":  "AIDP Migration Workbench",
+                      "shortDescription":  "Inspect `.source`, plan migrations, and build AIDP projects with local OCI CLI.",
+                      "longDescription":  "AIDP Migration Workbench helps Codex migrate or create AI Data Platform projects from mixed source evidence in `.source`, including SQL, notebooks, documentation, exports, and legacy artifacts from platforms such as Databricks, Cloudera, SQL Server, Oracle, or document-only requirements. It uses `.oci` and the local OCI CLI to plan, validate, bootstrap, deploy, and operate AIDP workspaces with reusable skills and guarded workflows.",
+                      "developerName":  "Joel Gangini",
+                      "category":  "OCI",
+                      "capabilities":  [
+                                           "Interactive",
+                                           "Write"
+                                       ],
+                      "defaultPrompt":  [
+                                            "Inspect `.source` and propose an AIDP migration plan.",
+                                            "Use `.source` and `.oci` to create a new AIDP project from source artifacts or requirements documents.",
+                                            "Bootstrap the local OCI CLI environment and validate the target AIDP workspace."
+                                        ],
+                      "brandColor":  "#C74634",
+                      "composerIcon":  "./assets/icon.svg",
+                      "logo":  "./assets/logo.png"
+                  }
+}
+

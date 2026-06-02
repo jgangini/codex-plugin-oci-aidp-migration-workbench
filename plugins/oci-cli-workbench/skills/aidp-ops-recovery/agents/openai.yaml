@@ -1,0 +1,7 @@
+interface:
+  display_name: "AIDP Ops Recovery"
+  short_description: "Recover, cancel, and monitor AIDP runs"
+  icon_small: "./assets/icon.svg"
+  icon_large: "./assets/logo.png"
+  brand_color: "#C74634"
+  default_prompt: "Use $aidp-ops-recovery to cancel active job runs, clean up isolated runtimes or computes, and monitor long AIDP migrations safely."

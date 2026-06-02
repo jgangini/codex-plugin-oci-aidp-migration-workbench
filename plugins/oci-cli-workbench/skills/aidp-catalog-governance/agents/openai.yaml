@@ -1,0 +1,7 @@
+interface:
+  display_name: "AIDP Catalog Governance"
+  short_description: "Provision medallion catalog governance"
+  icon_small: "./assets/icon.svg"
+  icon_large: "./assets/logo.png"
+  brand_color: "#C74634"
+  default_prompt: "Use $aidp-catalog-governance to manage Data Catalog glossary, terms, entities, attributes, and lineage for the medallion layout."
