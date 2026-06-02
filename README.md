@@ -90,9 +90,12 @@ The internal plugin name remains `oci-cli-workbench` for compatibility with the
 existing Codex plugin package. The marketplace name is
 `oci-aidp-migration-workbench`.
 
-This is an independent community plugin and is not an official Oracle product.
-Oracle, OCI, and related names are trademarks of Oracle and/or its affiliates.
-
 ## License
 
-MIT. See [LICENSE](LICENSE).
+This project is licensed under the MIT License.
+
+AIDP Migration Workbench is an independent project and is not an official
+Oracle product. It is not affiliated with, endorsed by, or sponsored by Oracle
+Corporation. Oracle, OCI, and related marks are trademarks or registered
+trademarks of Oracle and/or its affiliates. Third-party trademarks, logos,
+service names, and assets remain the property of their respective owners.
