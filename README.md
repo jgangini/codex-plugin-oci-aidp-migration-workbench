@@ -89,3 +89,10 @@ Git URLs, pinned refs, and local clone workflows.
 The internal plugin name remains `oci-cli-workbench` for compatibility with the
 existing Codex plugin package. The marketplace name is
 `oci-aidp-migration-workbench`.
+
+This is an independent community plugin and is not an official Oracle product.
+Oracle, OCI, and related names are trademarks of Oracle and/or its affiliates.
+
+## License
+
+MIT. See [LICENSE](LICENSE).

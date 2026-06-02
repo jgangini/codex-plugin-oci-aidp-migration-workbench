@@ -8,7 +8,7 @@
                },
     "homepage":  "https://github.com/jgangini/codex-plugin-oci-aidp-migration-workbench",
     "repository":  "https://github.com/jgangini/codex-plugin-oci-aidp-migration-workbench.git",
-    "license":  "UNLICENSED",
+    "license":  "MIT",
     "keywords":  [
                      "oci",
                      "oracle-cloud",
