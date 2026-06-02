@@ -15,9 +15,11 @@ style assistant for building OCI projects: Codex uses the local CLI context,
 Git workflow, and plugin skills to inspect, plan, validate, and move OCI/AIDP
 work forward from the repository.
 
-<video src="plugins/oci-cli-workbench/assets/videos/oci-cli-git-demo.mp4" controls width="100%"></video>
+[![Watch the OCI CLI Git demo](plugins/oci-cli-workbench/assets/screenshots/aidp-workbench-prompts.png)](plugins/oci-cli-workbench/assets/videos/oci-cli-git-demo.mp4)
 
-[Watch the OCI CLI Git demo](plugins/oci-cli-workbench/assets/videos/oci-cli-git-demo.mp4)
+GitHub README pages do not reliably render inline video controls. Click the
+preview above or use the direct link to play the MP4:
+[Watch the OCI CLI Git demo](plugins/oci-cli-workbench/assets/videos/oci-cli-git-demo.mp4).
 
 ## Install From GitHub
 
