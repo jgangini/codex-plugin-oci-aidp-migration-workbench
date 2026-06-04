@@ -1,7 +1,7 @@
 {
     "name":  "oci-cli-workbench",
-    "version":  "0.1.10",
-    "description":  "Cross-platform AIDP migration and project delivery plugin driven by `.source` evidence and local OCI CLI execution.",
+    "version":  "0.1.11",
+    "description":  "Cross-platform AIDP migration and project delivery plugin driven by `.source` evidence, Azure source inventory, and local OCI CLI execution.",
     "author":  {
                    "name":  "Joel Gangini",
                    "url":  "https://github.com/jgangini"
@@ -13,6 +13,8 @@
                      "oci",
                      "oracle-cloud",
                      "cli",
+                     "azure-cli",
+                     "azure",
                      "aidp",
                      "ai-data-platform",
                      "migration",
@@ -22,7 +24,7 @@
     "interface":  {
                       "displayName":  "AIDP Migration Workbench",
                       "shortDescription":  "Inspect `.source`, plan migrations, and build AIDP projects with local OCI CLI.",
-                      "longDescription":  "AIDP Migration Workbench helps Codex migrate or create AI Data Platform projects from mixed source evidence in `.source`, including SQL, notebooks, documentation, exports, and legacy artifacts from platforms such as Databricks, Cloudera, SQL Server, Oracle, or document-only requirements. It uses `.oci` and the local OCI CLI to plan, validate, bootstrap, deploy, and operate AIDP workspaces with reusable skills and guarded workflows.",
+                      "longDescription":  "AIDP Migration Workbench helps Codex migrate or create AI Data Platform projects from mixed source evidence in `.source`, including SQL, notebooks, documentation, exports, and legacy artifacts from platforms such as Azure data platforms, Databricks, Cloudera, SQL Server, Oracle, or document-only requirements. It can bootstrap Azure CLI readiness and inventory Azure data-platform resources before handing findings into source intake, then uses `.oci` and the local OCI CLI to plan, validate, bootstrap, deploy, and operate AIDP workspaces with reusable skills and guarded workflows.",
                       "developerName":  "Joel Gangini",
                       "category":  "OCI",
                       "capabilities":  [
@@ -32,11 +34,11 @@
                       "defaultPrompt":  [
                                             "Inspect `.source` and propose an AIDP migration plan.",
                                             "Use `.source` and `.oci` to create a new AIDP project from source artifacts or requirements documents.",
-                                            "Bootstrap the local OCI CLI environment and validate the target AIDP workspace."
+                                            "Bootstrap the local OCI CLI environment and validate the target AIDP workspace.",
+                                            "Bootstrap Azure CLI and inventory Azure data-platform resources before shaping an AIDP migration manifest."
                                         ],
                       "brandColor":  "#C74634",
                       "composerIcon":  "./assets/icon.svg",
                       "logo":  "./assets/logo.png"
                   }
 }
-

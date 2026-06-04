@@ -1,0 +1,7 @@
+interface:
+  display_name: "AIDP Azure Bootstrap"
+  short_description: "Inventory Azure data sources for AIDP."
+  icon_small: "./assets/icon.svg"
+  icon_large: "./assets/logo.png"
+  brand_color: "#C74634"
+  default_prompt: "Use $aidp-azure-bootstrap to verify Azure CLI readiness, inspect the active subscription, inventory Azure data-platform resources, and hand off findings into AIDP source intake and manifest work."

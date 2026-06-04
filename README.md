@@ -2,9 +2,9 @@
 
 Codex marketplace repository for installing the `oci-cli-workbench` plugin,
 shown in Codex as **AIDP Migration Workbench**. The plugin helps Codex inspect
-`.source` evidence, plan migrations, bootstrap local OCI CLI tooling, validate
-AIDP runtime state, deploy Workbench assets, and operate medallion-style AIDP
-projects.
+`.source` evidence, bootstrap Azure CLI inventory for Azure data platforms,
+plan migrations, bootstrap local OCI CLI tooling, validate AIDP runtime state,
+deploy Workbench assets, and operate medallion-style AIDP projects.
 
 ![AIDP Migration Workbench prompts](plugins/oci-cli-workbench/assets/screenshots/aidp-workbench-prompts.png)
 
@@ -18,13 +18,28 @@ and Git workflow to inspect, plan, validate, and move OCI/AIDP work forward.
 
 https://github.com/user-attachments/assets/9586628d-3cba-4521-a6af-053e59a76974
 
+## `aidp-azure-bootstrap` Skill
+
+`aidp-azure-bootstrap` prepares Azure estates for AIDP migration planning
+without mutating Azure resources by default. It verifies Azure CLI readiness,
+confirms the active account and subscription, inventories data-platform
+services such as ADLS/Blob, Synapse, Databricks, Data Factory, Event Hubs,
+Azure SQL, Cosmos DB, Key Vault, and private networking, then hands findings
+into `.source`, `aidp-source-intake`, and `aidp-source-manifest` workflows.
+
+## What's New in v0.1.11
+
+- Added `$aidp-azure-bootstrap` for read-only Azure CLI readiness and data-platform inventory.
+- Added Azure-to-AIDP mapping guidance for source systems, storage roots, orchestration, streaming, secret dependencies, and private networking.
+- Updated plugin metadata, keywords, and default prompts so Azure-to-AIDP migration bootstrap appears as a first-class workflow.
+
 ## Install From GitHub
 
 Users can add the marketplace with any of these forms:
 
 ```powershell
 codex plugin marketplace add jgangini/codex-plugin-oci-aidp-migration-workbench
-codex plugin marketplace add jgangini/codex-plugin-oci-aidp-migration-workbench@v0.1.10
+codex plugin marketplace add jgangini/codex-plugin-oci-aidp-migration-workbench@v0.1.11
 codex plugin marketplace add https://github.com/jgangini/codex-plugin-oci-aidp-migration-workbench.git
 ```
 
@@ -46,7 +61,7 @@ codex plugin marketplace upgrade oci-aidp-migration-workbench
 ```
 
 Pinned installs can be upgraded by changing the Git ref, for example from a
-tag to `main` or from `v0.1.10` to a newer release tag.
+tag to `main` or from `v0.1.10` to `v0.1.11` or a newer release tag.
 
 ## Marketplace Layout
 
@@ -74,6 +89,7 @@ Git URLs, pinned refs, and local clone workflows.
 ## Skills
 
 - `oci-bootstrap-uv`: bootstrap and repair the local Python/uv OCI CLI toolchain.
+- `aidp-azure-bootstrap`: bootstrap Azure CLI readiness and inventory Azure data platforms.
 - `aidp-source-intake`: inspect `.source` and infer migration scope.
 - `aidp-source-manifest`: build and validate the medallion migration manifest.
 - `aidp-platform-bootstrap`: bootstrap AIDP projects and platforms.
