@@ -2,9 +2,10 @@
 
 Codex marketplace repository for installing the `oci-cli-workbench` plugin,
 shown in Codex as **AIDP Migration Workbench**. The plugin helps Codex inspect
-`.source` evidence, bootstrap Azure CLI inventory for Azure data platforms,
-plan migrations, bootstrap local OCI CLI tooling, validate AIDP runtime state,
-deploy Workbench assets, and operate medallion-style AIDP projects.
+`.source` evidence, bootstrap project-local `.az` Azure CLI inventory for Azure
+data platforms, plan migrations, bootstrap local `.oci` OCI CLI tooling,
+validate AIDP runtime state, deploy Workbench assets, and operate
+medallion-style AIDP projects.
 
 ![AIDP Migration Workbench prompts](plugins/oci-cli-workbench/assets/screenshots/aidp-workbench-prompts.png)
 
@@ -21,11 +22,48 @@ https://github.com/user-attachments/assets/9586628d-3cba-4521-a6af-053e59a76974
 ## `aidp-azure-bootstrap` Skill
 
 `aidp-azure-bootstrap` prepares Azure estates for AIDP migration planning
-without mutating Azure resources by default. It verifies Azure CLI readiness,
-confirms the active account and subscription, inventories data-platform
-services such as ADLS/Blob, Synapse, Databricks, Data Factory, Event Hubs,
-Azure SQL, Cosmos DB, Key Vault, and private networking, then hands findings
-into `.source`, `aidp-source-intake`, and `aidp-source-manifest` workflows.
+without mutating Azure resources by default. It standardizes `.az/` as the
+project-local Azure context root, uses `.az/cli/` as the recommended
+`AZURE_CONFIG_DIR`, verifies Azure CLI readiness, confirms the active account
+and subscription, inventories data-platform services such as ADLS/Blob,
+Synapse, Databricks, Data Factory, Event Hubs, Azure SQL, Cosmos DB, Key Vault,
+and private networking, then hands findings into `.source`,
+`aidp-source-intake`, and `aidp-source-manifest` workflows.
+
+## Project Context Folders
+
+Use separate local folders for each cloud and migration concern:
+
+```text
+.az/       Azure CLI and Databricks local context; never commit real tokens or logs.
+.oci/      OCI CLI config and key material for OCI/AIDP; required only for live OCI work.
+.source/   Portable source evidence, exports, notebooks, SQL, and migration notes.
+aidp/      AIDP manifest, reports, notebooks, and runtime handoff artifacts.
+```
+
+Recommended Azure layout:
+
+```text
+.az/
+  README.md
+  azure.env.example
+  databricks.env.example
+  cli/
+```
+
+`.az/cli/` should be used as `AZURE_CONFIG_DIR` for repeatable project work.
+The example env files should contain variable names and redacted placeholders
+only. Do not store subscription ids, tenant ids, user ids, full workspace URLs,
+Databricks tokens, Azure tokens, client secrets, connection strings, storage
+keys, or generated Azure CLI logs in tracked files.
+
+## What's New in v0.1.12
+
+- Standardized `.az/` as the project-local Azure context folder.
+- Documented `.az/cli/` as the preferred `AZURE_CONFIG_DIR` for Azure bootstrap.
+- Added Azure and Databricks placeholder env guidance with strict redaction rules.
+- Clarified that `.oci/` is only required for OCI/AIDP operations, not read-only Azure inventory.
+- Expanded ignore rules for Azure local state and credential files.
 
 ## What's New in v0.1.11
 
@@ -39,7 +77,7 @@ Users can add the marketplace with any of these forms:
 
 ```powershell
 codex plugin marketplace add jgangini/codex-plugin-oci-aidp-migration-workbench
-codex plugin marketplace add jgangini/codex-plugin-oci-aidp-migration-workbench@v0.1.11
+codex plugin marketplace add jgangini/codex-plugin-oci-aidp-migration-workbench@v0.1.12
 codex plugin marketplace add https://github.com/jgangini/codex-plugin-oci-aidp-migration-workbench.git
 ```
 
@@ -61,7 +99,7 @@ codex plugin marketplace upgrade oci-aidp-migration-workbench
 ```
 
 Pinned installs can be upgraded by changing the Git ref, for example from a
-tag to `main` or from `v0.1.10` to `v0.1.11` or a newer release tag.
+tag to `main` or from `v0.1.11` to `v0.1.12` or a newer release tag.
 
 ## Marketplace Layout
 
@@ -89,7 +127,7 @@ Git URLs, pinned refs, and local clone workflows.
 ## Skills
 
 - `oci-bootstrap-uv`: bootstrap and repair the local Python/uv OCI CLI toolchain.
-- `aidp-azure-bootstrap`: bootstrap Azure CLI readiness and inventory Azure data platforms.
+- `aidp-azure-bootstrap`: bootstrap `.az` Azure CLI readiness and inventory Azure data platforms.
 - `aidp-source-intake`: inspect `.source` and infer migration scope.
 - `aidp-source-manifest`: build and validate the medallion migration manifest.
 - `aidp-platform-bootstrap`: bootstrap AIDP projects and platforms.

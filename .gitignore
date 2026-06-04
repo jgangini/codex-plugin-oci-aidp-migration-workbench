@@ -13,6 +13,11 @@ venv/
 .env.*
 !.env.example
 
+.az/
+.azure/
+azure.env
+databricks.env
+
 .oci/
 .source/
 *.backup-*

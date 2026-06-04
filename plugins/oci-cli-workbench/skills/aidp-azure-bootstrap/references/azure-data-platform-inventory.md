@@ -6,6 +6,51 @@ Use these read-only commands to inventory Azure data-platform resources before A
 
 ## Azure CLI readiness
 
+### Project-local Azure context
+
+Use `.az/` as the project-local Azure context root. This keeps Azure CLI and
+Databricks runtime state separate from `.oci/`, which is only for OCI/AIDP
+operations.
+
+Recommended layout:
+
+```text
+.az/
+  README.md
+  azure.env.example
+  databricks.env.example
+  cli/
+```
+
+- `.az/cli/` is the preferred `AZURE_CONFIG_DIR` for repeatable project work.
+- `.az/azure.env.example` documents Azure variable names only.
+- `.az/databricks.env.example` documents Databricks variable names only.
+- Do not commit `.az/cli/`, tokens, tenant ids, subscription ids, user ids, full workspace URLs, or command logs.
+
+Example placeholders:
+
+```powershell
+# .az/azure.env.example
+AZURE_CONFIG_DIR=.az/cli
+AZURE_SUBSCRIPTION_ID=<redacted-subscription-id>
+AZURE_TENANT_ID=<redacted-tenant-id>
+AZURE_RESOURCE_GROUP=<redacted-resource-group>
+
+# .az/databricks.env.example
+DATABRICKS_HOST=<redacted-workspace-host>
+DATABRICKS_TOKEN=<redacted-token>
+DATABRICKS_CLUSTER_ID=<redacted-cluster-id>
+DATABRICKS_SQL_WAREHOUSE_ID=<redacted-warehouse-id>
+```
+
+Activate the project-local Azure CLI context:
+
+```powershell
+New-Item -ItemType Directory -Force -Path .\.az\cli | Out-Null
+$env:AZURE_CONFIG_DIR = (Resolve-Path .\.az\cli).Path
+az version
+```
+
 Check the CLI:
 
 ```powershell
@@ -13,11 +58,12 @@ az version
 az extension list --query "[].{name:name,version:version}" --output table
 ```
 
-If Azure CLI cannot write command logs under `C:\Users\jeggg\.azure\commands`, use a temporary config directory for sandbox-safe checks:
+If Azure CLI cannot write command logs under the user profile, use the
+project-local `.az/cli/` directory for sandbox-safe checks:
 
 ```powershell
-$env:AZURE_CONFIG_DIR = Join-Path $env:TEMP "codex-azure-cli"
-New-Item -ItemType Directory -Force -Path $env:AZURE_CONFIG_DIR | Out-Null
+New-Item -ItemType Directory -Force -Path .\.az\cli | Out-Null
+$env:AZURE_CONFIG_DIR = (Resolve-Path .\.az\cli).Path
 az version
 ```
 
@@ -27,6 +73,10 @@ Confirm login and subscription:
 az account show --query "{name:name,id:id,tenantId:tenantId,user:user.name}" --output json
 az account list --query "[].{name:name,id:id,isDefault:isDefault,tenantId:tenantId,state:state}" --output table
 ```
+
+When reporting results, redact or alias `id`, `tenantId`, and `user`. Use
+logical labels such as `active-subscription`, `tenant-redacted`, and
+`operator-redacted` in documentation and screenshots.
 
 Only switch subscriptions when the user explicitly selects one:
 
@@ -69,6 +119,11 @@ Azure Databricks:
 ```powershell
 az databricks workspace list --query "[].{name:name,resourceGroup:resourceGroup,location:location,workspaceUrl:workspaceUrl,managedResourceGroupId:managedResourceGroupId,sku:sku.name,tags:tags}" --output json
 ```
+
+For reports, redact `workspaceUrl` and `managedResourceGroupId`. If the
+workspace will be accessed through Databricks tooling, store only placeholder
+variable names in `.az/databricks.env.example`; keep real values in the local
+shell, secret manager, or another approved private credential mechanism.
 
 Azure Data Factory:
 
@@ -141,3 +196,12 @@ Summarize results in this order:
 4. Orchestration, streaming, and private-network dependencies.
 5. Evidence that should be copied or exported into `.source/`.
 6. Gaps, permissions, and the next skill: `$aidp-source-intake` or `$aidp-source-manifest`.
+
+## Redaction checklist
+
+Before saving reports, screenshots, or handoff notes:
+
+- Replace full URLs with service aliases.
+- Replace subscription, tenant, user, workspace, managed resource group, and principal ids with aliases.
+- Do not include Azure access tokens, refresh tokens, Databricks PATs, client secrets, connection strings, storage keys, or Key Vault secret values.
+- Keep `.az/` and `.oci/` contents out of generated reports unless the content is an example placeholder.
