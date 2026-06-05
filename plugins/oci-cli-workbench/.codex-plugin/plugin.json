@@ -1,6 +1,6 @@
 {
     "name":  "oci-cli-workbench",
-    "version":  "0.1.13",
+    "version":  "0.1.14",
     "description":  "Cross-platform AIDP migration and project delivery plugin driven by `.source` evidence, project-local `.az` Azure context, local `.oci` OCI execution, and reproducible validation evidence.",
     "author":  {
                    "name":  "Joel Gangini",
@@ -27,7 +27,7 @@
     "interface":  {
                       "displayName":  "AIDP Migration Workbench",
                       "shortDescription":  "Inspect `.source`, bootstrap `.az`, validate evidence, and build AIDP projects with local OCI CLI.",
-                      "longDescription":  "AIDP Migration Workbench helps Codex migrate or create AI Data Platform projects from mixed source evidence in `.source`, including SQL, notebooks, documentation, exports, and legacy artifacts from platforms such as Azure data platforms, Databricks, Cloudera, SQL Server, Oracle, or document-only requirements. It standardizes project-local Azure context in `.az`, can bootstrap Azure CLI readiness and inventory Azure data-platform resources before handing findings into source intake, then uses `.oci` and the local OCI CLI to plan, validate, bootstrap, deploy, and operate AIDP workspaces with reusable skills and guarded workflows. The plugin now documents real-console evidence expectations, Databricks-to-AIDP count parity validation, sanitized reproducibility packages, and the `codex-oci aidp platforms delete` wrapper gap identified during live migration cleanup.",
+                      "longDescription":  "AIDP Migration Workbench helps Codex migrate or create AI Data Platform projects from mixed source evidence in `.source`, including SQL, notebooks, documentation, exports, and legacy artifacts from platforms such as Azure data platforms, Databricks, Cloudera, SQL Server, Oracle, or document-only requirements. It standardizes project-local Azure context in `.az`, can bootstrap Azure CLI readiness and inventory Azure data-platform resources before handing findings into source intake, then uses `.oci` and the local OCI CLI to plan, validate, bootstrap, deploy, and operate AIDP workspaces with reusable skills and guarded workflows. The plugin now documents real-console evidence expectations, Databricks-to-AIDP count parity validation, sanitized reproducibility packages, and a safer cleanup boundary that keeps AIDP platform retirement outside automated wrapper cleanup.",
                       "developerName":  "Joel Gangini",
                       "category":  "OCI",
                       "capabilities":  [

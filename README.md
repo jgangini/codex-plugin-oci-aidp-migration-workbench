@@ -57,12 +57,19 @@ only. Do not store subscription ids, tenant ids, user ids, full workspace URLs,
 Databricks tokens, Azure tokens, client secrets, connection strings, storage
 keys, or generated Azure CLI logs in tracked files.
 
+## What's New in v0.1.14
+
+- Removed the recommendation to automate AIDP platform deletion from the wrapper roadmap.
+- Clarified that plugin cleanup should focus on temporary compute, jobs, objects, buckets, reports, and validation artifacts.
+- Kept AIDP platform retirement as an explicit operator-governed action outside automated plugin cleanup because it can affect critical shared services.
+- Updated recovery guidance so agents record cleanup evidence without encouraging destructive platform teardown.
+
 ## What's New in v0.1.13
 
 - Documented the Azure Databricks to OCI/AIDP validation roadmap from the live migration assessment.
 - Added evidence rules for real console captures versus API, DOM, summarized, or generated evidence.
 - Standardized evidence metadata fields: `source_type`, `capture_method`, `is_real_console`, `redaction_level`, and `accepted_for_report`.
-- Documented the required wrapper improvement: `codex-oci aidp platforms delete` for fully plugin-mediated AIDP teardown.
+- Documented the cleanup gap found during the live migration assessment; superseded in v0.1.14 by keeping platform retirement outside automated cleanup.
 - Added reproducibility package guidance for sanitized JSON reports, screenshots, validation summaries, and cleanup audits.
 - Clarified the Databricks-to-AIDP row-count parity path: Azure Databricks `COUNT(*)`, OCI Object Storage CSV row count, and AIDP Workbench count must match.
 
@@ -86,7 +93,7 @@ Users can add the marketplace with any of these forms:
 
 ```powershell
 codex plugin marketplace add jgangini/codex-plugin-oci-aidp-migration-workbench
-codex plugin marketplace add jgangini/codex-plugin-oci-aidp-migration-workbench@v0.1.13
+codex plugin marketplace add jgangini/codex-plugin-oci-aidp-migration-workbench@v0.1.14
 codex plugin marketplace add https://github.com/jgangini/codex-plugin-oci-aidp-migration-workbench.git
 ```
 
@@ -108,7 +115,7 @@ codex plugin marketplace upgrade oci-aidp-migration-workbench
 ```
 
 Pinned installs can be upgraded by changing the Git ref, for example from a
-tag to `main` or from `v0.1.12` to `v0.1.13` or a newer release tag.
+tag to `main` or from `v0.1.13` to `v0.1.14` or a newer release tag.
 
 ## Evidence and Reproducibility Standard
 
@@ -183,7 +190,7 @@ Git URLs, pinned refs, and local clone workflows.
 - `aidp-batch-stream-acceptance`: run batch and stream acceptance workflows.
 - `aidp-catalog-governance`: align Data Catalog glossary, taxonomy, and entities.
 - `aidp-object-storage-admin`: inspect and manage Object Storage layout.
-- `aidp-ops-recovery`: recover, cancel, clean up, monitor AIDP operations, and record platform teardown gaps.
+- `aidp-ops-recovery`: recover, cancel, clean up, monitor AIDP operations, and keep platform retirement outside automated cleanup.
 
 ## Notes
 
