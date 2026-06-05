@@ -57,6 +57,15 @@ only. Do not store subscription ids, tenant ids, user ids, full workspace URLs,
 Databricks tokens, Azure tokens, client secrets, connection strings, storage
 keys, or generated Azure CLI logs in tracked files.
 
+## What's New in v0.1.13
+
+- Documented the Azure Databricks to OCI/AIDP validation roadmap from the live migration assessment.
+- Added evidence rules for real console captures versus API, DOM, summarized, or generated evidence.
+- Standardized evidence metadata fields: `source_type`, `capture_method`, `is_real_console`, `redaction_level`, and `accepted_for_report`.
+- Documented the required wrapper improvement: `codex-oci aidp platforms delete` for fully plugin-mediated AIDP teardown.
+- Added reproducibility package guidance for sanitized JSON reports, screenshots, validation summaries, and cleanup audits.
+- Clarified the Databricks-to-AIDP row-count parity path: Azure Databricks `COUNT(*)`, OCI Object Storage CSV row count, and AIDP Workbench count must match.
+
 ## What's New in v0.1.12
 
 - Standardized `.az/` as the project-local Azure context folder.
@@ -77,7 +86,7 @@ Users can add the marketplace with any of these forms:
 
 ```powershell
 codex plugin marketplace add jgangini/codex-plugin-oci-aidp-migration-workbench
-codex plugin marketplace add jgangini/codex-plugin-oci-aidp-migration-workbench@v0.1.12
+codex plugin marketplace add jgangini/codex-plugin-oci-aidp-migration-workbench@v0.1.13
 codex plugin marketplace add https://github.com/jgangini/codex-plugin-oci-aidp-migration-workbench.git
 ```
 
@@ -99,7 +108,45 @@ codex plugin marketplace upgrade oci-aidp-migration-workbench
 ```
 
 Pinned installs can be upgraded by changing the Git ref, for example from a
-tag to `main` or from `v0.1.11` to `v0.1.12` or a newer release tag.
+tag to `main` or from `v0.1.12` to `v0.1.13` or a newer release tag.
+
+## Evidence and Reproducibility Standard
+
+Migration reports must distinguish between evidence types before claiming that
+a service was observed in a cloud console. Use real console screenshots for
+Azure Portal, Azure Databricks, OCI Console, and AIDP Workbench evidence. API,
+DOM, CLI, summarized, or generated images can support analysis, but they should
+not be captioned as real console captures.
+
+Persist evidence metadata with each report artifact whenever practical:
+
+```json
+{
+  "source_type": "azure_databricks|oci_console|aidp_workbench|cli|codex_chat",
+  "capture_method": "browser_screenshot|cli_json|api_json|manual_note",
+  "is_real_console": true,
+  "redaction_level": "none|user_only|sensitive_ids|strict",
+  "accepted_for_report": true
+}
+```
+
+For Azure Databricks to OCI/AIDP tests, retain the minimum reproducibility
+package:
+
+```text
+plugin_execution_summary.json
+plugin_cleanup_summary.json
+source_manifest.json
+migration_manifest.json
+aidp_workbench_gap_evaluation.json
+final_completion_audit.json
+codex_thread_plugin_validation_redacted.json
+```
+
+The functional validation result should compare the Azure Databricks joined
+table count, exported CSV row count, OCI Object Storage downloaded row count,
+and AIDP Workbench count. A run is accepted only when the absolute difference is
+zero and the cleanup evidence shows temporary resources were removed.
 
 ## Marketplace Layout
 
@@ -132,11 +179,11 @@ Git URLs, pinned refs, and local clone workflows.
 - `aidp-source-manifest`: build and validate the medallion migration manifest.
 - `aidp-platform-bootstrap`: bootstrap AIDP projects and platforms.
 - `aidp-workbench-deploy`: render and sync notebooks into AIDP Workbench.
-- `aidp-runtime-validate`: compare manifests, buckets, runtime jobs, and coverage.
+- `aidp-runtime-validate`: compare manifests, buckets, runtime jobs, row-count parity, evidence metadata, and coverage.
 - `aidp-batch-stream-acceptance`: run batch and stream acceptance workflows.
 - `aidp-catalog-governance`: align Data Catalog glossary, taxonomy, and entities.
 - `aidp-object-storage-admin`: inspect and manage Object Storage layout.
-- `aidp-ops-recovery`: recover, cancel, clean up, and monitor AIDP operations.
+- `aidp-ops-recovery`: recover, cancel, clean up, monitor AIDP operations, and record platform teardown gaps.
 
 ## Notes
 
