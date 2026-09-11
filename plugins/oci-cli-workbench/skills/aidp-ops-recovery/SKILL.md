@@ -17,7 +17,7 @@ Use this skill when the environment is already in motion and needs operator-styl
 ## Workflow
 
 1. Read `references/ops-recovery.md` before mutating live AIDP resources.
-2. Start with read-only status gathering whenever possible.
+2. Start with read-only status gathering whenever possible. For Volume errors, lost commands, failed cancellation, or streaming recovery, first use [execution diagnostics](../aidp-runtime-validate/references/execution-diagnostics.md).
 3. Cancel active job runs before deleting or resetting runtimes, computes, or downstream state.
 4. Prefer `uv run codex-oci aidp compute stop|delete|cleanup` for compute lifecycle work when the wrapper exposes the needed action.
 5. Keep AIDP platform retirement outside automated wrapper cleanup. If the user intends to retire a platform, document the governance approval, impact check, and manual operator action separately from plugin cleanup.

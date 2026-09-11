@@ -57,6 +57,14 @@ only. Do not store subscription ids, tenant ids, user ids, full workspace URLs,
 Databricks tokens, Azure tokens, client secrets, connection strings, storage
 keys, or generated Azure CLI logs in tracked files.
 
+## What's New in v0.1.15
+
+- Added an offline job-run summarizer that separates current and historical task attempts, flags missing or inconsistent repair maps, hashes identifiers and parameters, and refuses to overwrite evidence files.
+- Added [execution diagnostics](plugins/oci-cli-workbench/skills/aidp-runtime-validate/references/execution-diagnostics.md) for Volume failures, lost commands, incomplete cancellation, driver memory pressure, runtime restarts, and Spark `Wrong basePath` errors.
+- Documented isolated cold/warm repeatability checks, bounded monitoring API compatibility probes, and AMD/ARM compatibility guidance tied to official Oracle and Spark documentation.
+- Strengthened streaming recovery guidance to preserve job identities and checkpoints and verify offsets, committed output, backlog, and result parity.
+- Linked the diagnostic procedure from runtime validation, operations recovery, and batch/stream acceptance. These are diagnostic tools and procedures; no live remediation runs automatically.
+
 ## What's New in v0.1.14
 
 - Removed the recommendation to automate AIDP platform deletion from the wrapper roadmap.
@@ -93,7 +101,7 @@ Users can add the marketplace with any of these forms:
 
 ```powershell
 codex plugin marketplace add jgangini/codex-plugin-oci-aidp-migration-workbench
-codex plugin marketplace add jgangini/codex-plugin-oci-aidp-migration-workbench@v0.1.14
+codex plugin marketplace add jgangini/codex-plugin-oci-aidp-migration-workbench@v0.1.15
 codex plugin marketplace add https://github.com/jgangini/codex-plugin-oci-aidp-migration-workbench.git
 ```
 
@@ -115,7 +123,7 @@ codex plugin marketplace upgrade oci-aidp-migration-workbench
 ```
 
 Pinned installs can be upgraded by changing the Git ref, for example from a
-tag to `main` or from `v0.1.13` to `v0.1.14` or a newer release tag.
+tag to `main` or from `v0.1.14` to `v0.1.15` or a newer release tag.
 
 ## Evidence and Reproducibility Standard
 

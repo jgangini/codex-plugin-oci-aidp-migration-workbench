@@ -16,7 +16,7 @@ Use this skill for read-only verification of what an AIDP run actually covered. 
 
 ## Workflow
 
-1. Read `references/runtime-validation.md` before investigating a live run.
+1. Read `references/runtime-validation.md` before investigating a live run. For slow, failed, stuck, or repaired executions, also read [execution diagnostics](references/execution-diagnostics.md) and use its bundled offline attempt summarizer.
 2. Resolve the runtime seed first: explicit workspace, job, or jobRun ids win; otherwise reuse the latest launch report if the workflow supports it.
 3. Use `uv run codex-oci aidp work-requests list|get ...` when control-plane status or recent asynchronous activity helps anchor the investigation.
 4. Compare the uploaded source manifest with the live source scope and the customer bucket inventory.

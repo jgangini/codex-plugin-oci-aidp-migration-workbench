@@ -24,7 +24,7 @@ Use this skill for the heaviest end-to-end validation flow in the AIDP package. 
 
 ## Rules
 
-- Keep baseline and candidate evidence separate.
+- Keep baseline and candidate evidence separate. Separate original and repaired attempts using [execution diagnostics](../aidp-runtime-validate/references/execution-diagnostics.md); verify the same input inventory, code, task graph, parameters, and historical compute before comparing performance. Preserve existing checkpoints during incident recovery; a baseline reset is a separate explicitly scoped acceptance operation.
 - Persist every intermediate report. Acceptance is not reproducible without the snapshots, backlog windows, and output-refresh evidence.
 - Do not skip the cancellation and refresh steps when the live environment is dirty.
 - Treat non-terminal or inconsistent backlog windows as a reason to keep monitoring rather than declaring success early.
