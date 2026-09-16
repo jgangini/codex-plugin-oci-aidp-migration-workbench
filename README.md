@@ -57,6 +57,17 @@ only. Do not store subscription ids, tenant ids, user ids, full workspace URLs,
 Databricks tokens, Azure tokens, client secrets, connection strings, storage
 keys, or generated Azure CLI logs in tracked files.
 
+## What's New in v0.1.16
+
+- Added an [offline validation contract](plugins/oci-cli-workbench/skills/aidp-runtime-validate/references/validation-contract.md) and dependency-free tools for decoding actual AIDP output and assessing three comparable full runs. Repeatability, correctness and operational validation have separate verdicts; missing evidence stays pending.
+- Added [Spark and Volume diagnostic lessons](plugins/oci-cli-workbench/skills/aidp-ops-recovery/references/diagnostic-lessons.md): producer barriers, listing completeness, URI consistency, commit latency, independent writer distribution, bounded file growth, native control markers, cache cleanup, Observation/listener waits and duplicate selection.
+- Preserved streaming checkpoint/replay safeguards and added versioned experiment journals, effective configuration checks, exact reconciliation, ordered `99_report` SQL guidance and complete cost accounting.
+- Integrated the procedure into runtime validation, operations recovery, deployment and batch/stream acceptance. Existing task authorization remains valid; no live remediation runs automatically.
+- Documented compatibility checks for Oracle's separately installed Workbench Engineer Agent and linked official Oracle, Spark and Hadoop sources. No vendor JAR patches, disabled lineage, customer code, credentials or cloud identifiers are included.
+- Regression checks use synthetic evidence. Diagnostic observations do not certify an unresolved workload or promise a universal speedup.
+
+See [release notes and validation](docs/releases/v0.1.16.md).
+
 ## What's New in v0.1.15
 
 - Added an offline job-run summarizer that separates current and historical task attempts, flags missing or inconsistent repair maps, hashes identifiers and parameters, and refuses to overwrite evidence files.

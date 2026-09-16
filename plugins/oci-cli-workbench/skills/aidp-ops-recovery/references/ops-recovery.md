@@ -1,5 +1,7 @@
 # Ops Recovery
 
+For Spark waits, commit latency, incomplete enumeration, listener pressure and nondeterministic results, use the [evidence-driven diagnostic lessons](diagnostic-lessons.md). Preserve raw outputs and frozen versions; apply only the case's authorized scope.
+
 ## Common recovery families
 
 - Cancel active job runs before redeploying or re-running.

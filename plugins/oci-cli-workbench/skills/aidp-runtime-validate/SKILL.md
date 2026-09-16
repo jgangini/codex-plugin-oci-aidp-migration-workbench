@@ -17,6 +17,7 @@ Use this skill for read-only verification of what an AIDP run actually covered. 
 ## Workflow
 
 1. Read `references/runtime-validation.md` before investigating a live run. For slow, failed, stuck, or repaired executions, also read [execution diagnostics](references/execution-diagnostics.md) and use its bundled offline attempt summarizer.
+   For repeatability or ambiguous task output, use [the validation contract](references/validation-contract.md), the offline output decoder and repeatability assessor. Consult [Spark/Volume lessons](../aidp-ops-recovery/references/diagnostic-lessons.md) before selecting an optimization.
 2. Resolve the runtime seed first: explicit workspace, job, or jobRun ids win; otherwise reuse the latest launch report if the workflow supports it.
 3. Use `uv run codex-oci aidp work-requests list|get ...` when control-plane status or recent asynchronous activity helps anchor the investigation.
 4. Compare the uploaded source manifest with the live source scope and the customer bucket inventory.
@@ -27,6 +28,9 @@ Use this skill for read-only verification of what an AIDP run actually covered. 
 ## Rules
 
 - Keep this flow read-only unless the user explicitly pivots into deployment or recovery.
+- Reuse authorization already provided in the task; do not ask again for the same scoped operation. Never infer permission to publish case evidence or send Slack messages from diagnostic access.
+- Report execution repeatability, data correctness and operational/observability findings separately. A data mismatch does not erase observed consistent timing; SUCCESS and matching totals do not prove full-row equivalence.
+- Preserve unknown evidence as pending. Verify effective runtime and task settings, full input coverage, repairs, startup state, code hashes and chronological continuity before qualifying repeated runs.
 - Sanitize outputs and summaries. Do not dump secrets or full private OCIDs.
 - Label each evidence artifact with `source_type`, `capture_method`, `is_real_console`, `redaction_level`, and `accepted_for_report` when the output will feed a report.
 - Do not treat API, DOM, CLI, summarized, or generated images as real console screenshots.

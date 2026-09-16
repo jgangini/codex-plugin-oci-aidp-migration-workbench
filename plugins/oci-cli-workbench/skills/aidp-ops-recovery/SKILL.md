@@ -17,6 +17,7 @@ Use this skill when the environment is already in motion and needs operator-styl
 ## Workflow
 
 1. Read `references/ops-recovery.md` before mutating live AIDP resources.
+   For irregular Spark or Volume execution, also read [diagnostic lessons](references/diagnostic-lessons.md) before selecting recovery or optimization.
 2. Start with read-only status gathering whenever possible. For Volume errors, lost commands, failed cancellation, or streaming recovery, first use [execution diagnostics](../aidp-runtime-validate/references/execution-diagnostics.md).
 3. Cancel active job runs before deleting or resetting runtimes, computes, or downstream state.
 4. Prefer `uv run codex-oci aidp compute stop|delete|cleanup` for compute lifecycle work when the wrapper exposes the needed action.
@@ -27,6 +28,8 @@ Use this skill when the environment is already in motion and needs operator-styl
 ## Rules
 
 - Prefer the least destructive recovery step that unblocks the workflow.
+- Reuse existing authorization and the project's registered resource/region/budget boundaries. A naming suffix alone never proves ownership.
+- Reconcile interrupted monitors and pending cancellations before starting another run. Quiet output alone is not a confirmed stall.
 - Persist status and cleanup reports under `aidp/reports/`.
 - Explain exactly what is being cancelled or cleaned before doing it.
 - Keep `aidp compute cleanup` read-only until the user explicitly wants `--apply`.

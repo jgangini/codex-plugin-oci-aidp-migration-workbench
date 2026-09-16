@@ -1,5 +1,7 @@
 # Execution diagnostics and streaming recovery
 
+For the newer reusable output decoder, separate repeatability/correctness verdicts and ordered SQL reporting, follow the [validation contract](validation-contract.md). The [Spark/Volume diagnostic lessons](../../aidp-ops-recovery/references/diagnostic-lessons.md) cover producer barriers, commit costs, filesystem contracts, writer distribution, cache lifecycle and listener evidence.
+
 Use this reference for slow, failed, stuck, or inconsistently cancelled AIDP jobs. Diagnosis is read-only. A diagnostic request does not authorize running notebooks, restarting compute, resetting state, or sending Slack messages.
 
 ## Collect evidence before choosing a cause

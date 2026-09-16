@@ -34,6 +34,8 @@ Use this skill for the live deployment path from local notebook rendering to AID
 ## Rules
 
 - Keep every live mutation opt-in.
+- Reuse authorization already given for the operation. For versioned migration experiments, preserve originals, freeze executed copies and their dependencies/settings, register ownership and give each attempt a new output root. See [diagnostic lessons](../aidp-ops-recovery/references/diagnostic-lessons.md).
+- Verify complete producer barriers when consumers read shared ingestion output. Confirm effective SparkContext and task settings after startup, not only the accepted API configuration; keep optional `99_report` validation separate from measured workflow time.
 - Persist report JSON outputs so later validation and ops flows can reuse them.
 - Do not hide workspace, job, or cluster replacement from the user.
 - Prefer `uv run codex-oci aidp compute ...` for compute inspection and lifecycle actions instead of ad hoc raw requests when the wrapper already exposes the needed operation.

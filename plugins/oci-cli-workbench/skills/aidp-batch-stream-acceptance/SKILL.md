@@ -18,6 +18,7 @@ Use this skill for the heaviest end-to-end validation flow in the AIDP package. 
 
 1. Read `references/acceptance-playbook.md` before touching a live acceptance run.
 2. Confirm that the user really wants a live acceptance execution. This flow cancels runs, deploys or launches jobs, and waits on backlog state.
+   Existing explicit authorization in the task satisfies this step; do not request it again. Keep reset and checkpoint-preserving recovery scopes distinct.
 3. Build or review the batch baseline first.
 4. Reset the target process date before starting streaming workers.
 5. Start workers in the expected order, wait for bt backlog convergence across consecutive windows using `file_state` and `output_refresh`, stop them cleanly, run finalize, wait for aggregate backlog zero, and compare snapshots.
@@ -26,6 +27,7 @@ Use this skill for the heaviest end-to-end validation flow in the AIDP package. 
 
 - Keep baseline and candidate evidence separate. Separate original and repaired attempts using [execution diagnostics](../aidp-runtime-validate/references/execution-diagnostics.md); verify the same input inventory, code, task graph, parameters, and historical compute before comparing performance. Preserve existing checkpoints during incident recovery; a baseline reset is a separate explicitly scoped acceptance operation.
 - Persist every intermediate report. Acceptance is not reproducible without the snapshots, backlog windows, and output-refresh evidence.
+- Use the [validation contract](../aidp-runtime-validate/references/validation-contract.md) to separate repeatable duration, row equivalence and operational health. Preserve failed attempts; do not select only favorable samples or count different versions as one series.
 - Do not skip the cancellation and refresh steps when the live environment is dirty.
 - Treat non-terminal or inconsistent backlog windows as a reason to keep monitoring rather than declaring success early.
 - A single zero snapshot is insufficient. Require the curated consecutive zero-window rule before stopping workers.
