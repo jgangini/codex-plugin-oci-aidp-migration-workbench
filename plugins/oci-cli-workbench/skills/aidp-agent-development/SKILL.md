@@ -25,6 +25,13 @@ Read [development-loop.md](references/development-loop.md) before the first
 live agent change. It contains the publication boundary, readiness checks,
 evidence requirements and pinned official examples.
 
+For memory, checkpoint, framework or dependency changes, first read
+[Oracle memory and external framework skills](references/oracle-memory-and-frameworks.md).
+It separates this plugin's development standard, the official Oracle execution
+skills, and separately installed upstream LangChain/LangGraph guidance. Recommend
+the external skills only when relevant; installation and updates are explicit
+operations, not prerequisites silently performed during a development request.
+
 ## Work cycle
 
 1. **Identify the target.** Confirm the workspace, agent, development compute,

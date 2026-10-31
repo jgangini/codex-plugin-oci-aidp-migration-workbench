@@ -1,6 +1,6 @@
 {
   "name": "oci-cli-workbench",
-  "version": "0.1.17",
+  "version": "0.1.18",
   "description": "AIDP migration, project delivery and agent development with an AIDP-first edit/test/Playground loop, explicit endpoint publication, local OCI tooling and reproducible evidence.",
   "author": {
     "name": "Joel Gangini",

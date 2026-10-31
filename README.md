@@ -73,6 +73,19 @@ requested local development route, distinguishes dependency/package changes,
 and verifies actual instance capabilities before claiming a fast test path.
 No cloud changes or paid calls occur by installing this plugin.
 
+## What's New in v0.1.18
+
+- Kept the development standard here and live AIDP operations in the separately
+  installed official Oracle Workbench Engineer Agent.
+- Added Oracle-specific memory guidance: context, long-term extraction and
+  sharing, retention, identity isolation, cost and memory acceptance checks.
+- Recommended relevant official LangChain/LangGraph skills as a separate
+  installation, with compatibility checks before activation. Upstream content
+  is not copied into this plugin. A local Codex packaging adaptation is named
+  `langchain-skills-codex`; it is not an official LangChain Codex plugin.
+- See [release notes](docs/releases/v0.1.18.md). No runtime libraries or memory
+  settings are changed by installing this plugin.
+
 ## What's New in v0.1.17
 
 - Added an AIDP-first agent development skill with editor, individual tool and
