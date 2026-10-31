@@ -57,6 +57,33 @@ only. Do not store subscription ids, tenant ids, user ids, full workspace URLs,
 Databricks tokens, Azure tokens, client secrets, connection strings, storage
 keys, or generated Azure CLI logs in tracked files.
 
+## Agent development in AIDP
+
+For agent development, adaptation, MCP integration or slow redeploy cycles, use
+[`aidp-agent-development`](plugins/oci-cli-workbench/skills/aidp-agent-development/SKILL.md).
+Its first option is an AIDP development agent attached to AI Compute: edit,
+run the smallest useful test, inspect traces and iterate in Playground. The
+hosted endpoint is published only on an explicit user request; satisfaction
+or passing tests alone do not authorize publication. Existing authorization
+is reused within scope.
+
+The workflow reuses Oracle's separately installed official Workbench Engineer
+Agent rather than duplicating its APIs or shipping its source. It preserves a
+requested local development route, distinguishes dependency/package changes,
+and verifies actual instance capabilities before claiming a fast test path.
+No cloud changes or paid calls occur by installing this plugin.
+
+## What's New in v0.1.17
+
+- Added an AIDP-first agent development skill with editor, individual tool and
+  Playground tests before requested endpoint publication and smoke tests.
+- Linked current Oracle documentation, pinned official GitHub samples and
+  OpenAI plugin/skill authoring guidance; kept the existing supported manifest.
+- Added explicit handling of package paths, custom-tool dependencies, secrets,
+  bounded paid-tool tests and uncertain starts. No production hot reload claim.
+- Preflight now preserves an existing Sentrux baseline rather than overwriting it.
+- See [release notes](docs/releases/v0.1.17.md) for validation and runtime limits.
+
 ## What's New in v0.1.16
 
 - Added an [offline validation contract](plugins/oci-cli-workbench/skills/aidp-runtime-validate/references/validation-contract.md) and dependency-free tools for decoding actual AIDP output and assessing three comparable full runs. Repeatability, correctness and operational validation have separate verdicts; missing evidence stays pending.
