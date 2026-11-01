@@ -32,6 +32,21 @@ skills, and separately installed upstream LangChain/LangGraph guidance. Recommen
 the external skills only when relevant; installation and updates are explicit
 operations, not prerequisites silently performed during a development request.
 
+## CLI-first operations
+
+Use CLI as the primary path for repetitive file updates, agent configuration,
+status, sessions, traces and repeatable tests when their contracts are verified.
+Prefer the installed project wrapper; use `oci raw-request` or a maintained
+project helper for a supported operation the wrapper does not expose. Check
+actual command help, the target API generation and request/response shape;
+this skill does not add a `codex-oci` agent or chat command.
+
+Keep Browser for visual acceptance and operations without a verified automation
+contract. After a bounded capability check, record the exact missing operation
+and use its supported UI without guessing endpoints or repeating failed payloads.
+Return to CLI for the remaining verified operations. Read the Playground revision
+section in `development-loop.md` before refreshing a packaged development agent.
+
 ## Work cycle
 
 1. **Identify the target.** Confirm the workspace, agent, development compute,

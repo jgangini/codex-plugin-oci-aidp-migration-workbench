@@ -31,6 +31,50 @@ editor/test execution; About Agent Tools warns that third-party dependencies of
 custom packages require a full deployment before Playground testing. Identify
 which mechanism is in use; do not generalize one rule to every agent.
 
+## Playground revision and CLI capability
+
+Choose the execution path per operation, rather than switching the entire task
+to Browser because one API is unavailable:
+
+| Operation | Primary path | Acceptance evidence |
+| --- | --- | --- |
+| Upload files or update configuration | Installed CLI/helper with the verified target contract | Readback of exact bytes, identity and declared environment substitutions. |
+| Read status, sessions, traces or tool results | CLI or signed REST through the existing project helper | Terminal state plus relevant output/error evidence, with private identifiers retained outside public reports. |
+| Refresh TEST or publish an endpoint | CLI only when its development/production selector and payload are verified; otherwise the supported UI | Actual served revision and one bounded invocation; ACTIVE alone is insufficient. |
+| Inspect Registry registration or another missing contract | One bounded capability check, then supported UI | Explicit result or concrete missing contract; no invented internal API. |
+| Review chat layout, charts, keyboard or streaming presentation | Browser with the project's capture policy | The actual rendered client; CLI SSE events alone do not prove visual acceptance. |
+
+Keep authentication and secret resolution in the existing protected CLI/runtime
+context. Do not move secrets into commands, URLs or screenshots to automate a UI
+step. Preserve operation IDs, conditional writes and run reconciliation across
+both paths; a Browser retry is not permission to repeat an uncertain paid start.
+
+
+Treat source upload, compute association, package refresh and invocation as
+separate operations. Prefer `oci raw-request` for an operation covered by the
+target's verified REST contract; do not replace the current API generation with
+an older AgentFlows route merely because a skill contains an example.
+
+For a refresh, retain the existing PROD deployment identity/state, update only
+the development target, and verify a code revision from its actual output or
+trace. ACTIVE and a successful UpdateAgent response alone do not prove freshness.
+On one checked 20260430 installation, assigning the same `computeKey` returned
+success while the next invocation still ran the previous diagnostic revision;
+assigning null did not confirm a detach. These are instance observations, not
+universal API behavior or accepted refresh commands. Do not keep retrying those
+payloads. Use the supported development UI when no verified CLI refresh route is
+available, then return to CLI operations. Do not substitute a deploy/redeploy
+action without a verified development-only selector.
+
+The published Agent API lists session/history/trace reads and UpdateAgent, but
+its endpoint index does not itself establish a test-invocation or Playground
+refresh contract. Verify those separately before adding an executable helper.
+Record an unsupported operation explicitly; never report a local plugin guide
+update as implementation or acceptance of that missing command.
+
+References: [Agent REST endpoints](https://docs.oracle.com/en/cloud/paas/ai-data-platform/aiwap/rest-endpoints.html),
+[UpdateAgent](https://docs.oracle.com/en/cloud/paas/ai-data-platform/aiwap/op-aidataplatforms-aidataplatformid-workspaces-workspacekey-agents-agentkey-put.html).
+
 ## Readiness and reuse
 
 Record only the target needed for the task: workspace, development agent,
