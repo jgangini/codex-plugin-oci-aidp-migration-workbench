@@ -1,7 +1,7 @@
 {
   "name": "oci-cli-workbench",
-  "version": "0.1.18",
-  "description": "AIDP migration, project delivery and agent development with an AIDP-first edit/test/Playground loop, explicit endpoint publication, local OCI tooling and reproducible evidence.",
+  "version": "0.1.19",
+  "description": "CLI-first AIDP migration and agent development with verified contracts, TEST/Playground iteration, visual acceptance and explicit endpoint publication.",
   "author": {
     "name": "Joel Gangini",
     "url": "https://github.com/jgangini"
@@ -31,7 +31,7 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "AIDP Migration Workbench",
-    "shortDescription": "Migrate data and develop AIDP agents through editor tests and Playground before publishing.",
+    "shortDescription": "Develop and migrate in AIDP using verified CLI operations and Browser acceptance.",
     "longDescription": "AIDP Migration Workbench helps Codex migrate or create AI Data Platform projects from mixed source evidence in `.source`, including SQL, notebooks, documentation, exports, and legacy artifacts from platforms such as Azure data platforms, Databricks, Cloudera, SQL Server, Oracle, or document-only requirements. It standardizes project-local Azure context in `.az`, can bootstrap Azure CLI readiness and inventory Azure data-platform resources before handing findings into source intake, then uses `.oci` and the local OCI CLI to plan, validate, bootstrap, deploy, and operate AIDP workspaces with reusable skills and guarded workflows. The plugin includes offline execution-attempt summaries, correlated Volume and driver diagnostics, Spark path-consistency guidance, checkpoint-preserving streaming recovery, and reproducible migration validation. AIDP platform retirement remains outside automated wrapper cleanup. It separates execution repeatability, exact result correctness and operational evidence, with offline output decoding and Spark/Volume diagnostic procedures.",
     "developerName": "Joel Gangini",
     "category": "OCI",

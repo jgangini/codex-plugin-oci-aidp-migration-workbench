@@ -73,6 +73,19 @@ requested local development route, distinguishes dependency/package changes,
 and verifies actual instance capabilities before claiming a fast test path.
 No cloud changes or paid calls occur by installing this plugin.
 
+## What's New in v0.1.19
+
+- Make CLI the primary path for repeatable AIDP operations with verified
+  contracts; prefer the installed wrapper and use signed REST helpers when a
+  supported operation is not exposed by that wrapper.
+- Reserve Browser for visual acceptance and operations without a verified
+  automation contract; return to CLI for the remaining operations.
+- Separate file upload, compute association, TEST refresh and invocation;
+  verify the actual served revision and preserve the published deployment.
+- Keep unsupported operations and prior architecture debt explicit. This is an
+  instruction update, not a new agent CLI command or live AIDP acceptance.
+- See [release notes](docs/releases/v0.1.19.md).
+
 ## What's New in v0.1.18
 
 - Kept the development standard here and live AIDP operations in the separately
