@@ -1,0 +1,7 @@
+interface:
+  display_name: "AIDP Batch Stream Acceptance"
+  short_description: "Run the mdln batch-stream acceptance flow"
+  icon_small: "./assets/icon.svg"
+  icon_large: "./assets/logo.png"
+  brand_color: "#C74634"
+  default_prompt: "Use $aidp-batch-stream-acceptance to execute or review the mdln state-driven acceptance sequence for batch plus streaming workflows."

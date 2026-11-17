@@ -1,0 +1,7 @@
+interface:
+  display_name: "AIDP Object Storage Admin"
+  short_description: "Manage AIDP buckets and managed storage prefixes through codex-oci."
+  icon_small: "./assets/icon.svg"
+  icon_large: "./assets/logo.png"
+  brand_color: "#C74634"
+  default_prompt: "Use $aidp-object-storage-admin to inspect the AIDP storage layout, manage medallion buckets, and upload or clean objects through the local codex-oci wrapper."
