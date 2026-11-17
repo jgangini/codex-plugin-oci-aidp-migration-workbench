@@ -1,0 +1,20 @@
+{
+  "name": "oci-aidp-migration-workbench",
+  "interface": {
+    "displayName": "OCI AIDP Migration Workbench"
+  },
+  "plugins": [
+    {
+      "name": "oci-cli-workbench",
+      "source": {
+        "source": "local",
+        "path": "./plugins/oci-cli-workbench"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "OCI"
+    }
+  ]
+}

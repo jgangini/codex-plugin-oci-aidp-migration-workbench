@@ -1,0 +1,228 @@
+# AIDP Migration Workbench for Codex
+
+Codex marketplace repository for installing the `oci-cli-workbench` plugin,
+shown in Codex as **AIDP Migration Workbench**. The plugin helps Codex inspect
+`.source` evidence, bootstrap project-local `.az` Azure CLI inventory for Azure
+data platforms, plan migrations, bootstrap local `.oci` OCI CLI tooling,
+validate AIDP runtime state, deploy Workbench assets, and operate
+medallion-style AIDP projects.
+
+![AIDP Migration Workbench prompts](plugins/oci-cli-workbench/assets/screenshots/aidp-workbench-prompts.png)
+
+## `oci-bootstrap-uv` Skill
+
+`oci-bootstrap-uv` is the OCI bootstrap and control entry point for AIDP
+Migration Workbench. It prepares the repo-local Python 3.11 + `uv`
+environment, installs and validates the local OCI CLI toolchain, and checks the
+`codex-oci` wrapper so Codex can use the local CLI context, repository state,
+and Git workflow to inspect, plan, validate, and move OCI/AIDP work forward.
+
+https://github.com/user-attachments/assets/9586628d-3cba-4521-a6af-053e59a76974
+
+## `aidp-azure-bootstrap` Skill
+
+`aidp-azure-bootstrap` prepares Azure estates for AIDP migration planning
+without mutating Azure resources by default. It standardizes `.az/` as the
+project-local Azure context root, uses `.az/cli/` as the recommended
+`AZURE_CONFIG_DIR`, verifies Azure CLI readiness, confirms the active account
+and subscription, inventories data-platform services such as ADLS/Blob,
+Synapse, Databricks, Data Factory, Event Hubs, Azure SQL, Cosmos DB, Key Vault,
+and private networking, then hands findings into `.source`,
+`aidp-source-intake`, and `aidp-source-manifest` workflows.
+
+## Project Context Folders
+
+Use separate local folders for each cloud and migration concern:
+
+```text
+.az/       Azure CLI and Databricks local context; never commit real tokens or logs.
+.oci/      OCI CLI config and key material for OCI/AIDP; required only for live OCI work.
+.source/   Portable source evidence, exports, notebooks, SQL, and migration notes.
+aidp/      AIDP manifest, reports, notebooks, and runtime handoff artifacts.
+```
+
+Recommended Azure layout:
+
+```text
+.az/
+  README.md
+  azure.env.example
+  databricks.env.example
+  cli/
+```
+
+`.az/cli/` should be used as `AZURE_CONFIG_DIR` for repeatable project work.
+The example env files should contain variable names and redacted placeholders
+only. Do not store subscription ids, tenant ids, user ids, full workspace URLs,
+Databricks tokens, Azure tokens, client secrets, connection strings, storage
+keys, or generated Azure CLI logs in tracked files.
+
+## What's New in v0.1.16
+
+- Added an [offline validation contract](plugins/oci-cli-workbench/skills/aidp-runtime-validate/references/validation-contract.md) and dependency-free tools for decoding actual AIDP output and assessing three comparable full runs. Repeatability, correctness and operational validation have separate verdicts; missing evidence stays pending.
+- Added [Spark and Volume diagnostic lessons](plugins/oci-cli-workbench/skills/aidp-ops-recovery/references/diagnostic-lessons.md): producer barriers, listing completeness, URI consistency, commit latency, independent writer distribution, bounded file growth, native control markers, cache cleanup, Observation/listener waits and duplicate selection.
+- Preserved streaming checkpoint/replay safeguards and added versioned experiment journals, effective configuration checks, exact reconciliation, ordered `99_report` SQL guidance and complete cost accounting.
+- Integrated the procedure into runtime validation, operations recovery, deployment and batch/stream acceptance. Existing task authorization remains valid; no live remediation runs automatically.
+- Documented compatibility checks for Oracle's separately installed Workbench Engineer Agent and linked official Oracle, Spark and Hadoop sources. No vendor JAR patches, disabled lineage, customer code, credentials or cloud identifiers are included.
+- Regression checks use synthetic evidence. Diagnostic observations do not certify an unresolved workload or promise a universal speedup.
+
+See [release notes and validation](docs/releases/v0.1.16.md).
+
+## What's New in v0.1.15
+
+- Added an offline job-run summarizer that separates current and historical task attempts, flags missing or inconsistent repair maps, hashes identifiers and parameters, and refuses to overwrite evidence files.
+- Added [execution diagnostics](plugins/oci-cli-workbench/skills/aidp-runtime-validate/references/execution-diagnostics.md) for Volume failures, lost commands, incomplete cancellation, driver memory pressure, runtime restarts, and Spark `Wrong basePath` errors.
+- Documented isolated cold/warm repeatability checks, bounded monitoring API compatibility probes, and AMD/ARM compatibility guidance tied to official Oracle and Spark documentation.
+- Strengthened streaming recovery guidance to preserve job identities and checkpoints and verify offsets, committed output, backlog, and result parity.
+- Linked the diagnostic procedure from runtime validation, operations recovery, and batch/stream acceptance. These are diagnostic tools and procedures; no live remediation runs automatically.
+
+## What's New in v0.1.14
+
+- Removed the recommendation to automate AIDP platform deletion from the wrapper roadmap.
+- Clarified that plugin cleanup should focus on temporary compute, jobs, objects, buckets, reports, and validation artifacts.
+- Kept AIDP platform retirement as an explicit operator-governed action outside automated plugin cleanup because it can affect critical shared services.
+- Updated recovery guidance so agents record cleanup evidence without encouraging destructive platform teardown.
+
+## What's New in v0.1.13
+
+- Documented the Azure Databricks to OCI/AIDP validation roadmap from the live migration assessment.
+- Added evidence rules for real console captures versus API, DOM, summarized, or generated evidence.
+- Standardized evidence metadata fields: `source_type`, `capture_method`, `is_real_console`, `redaction_level`, and `accepted_for_report`.
+- Documented the cleanup gap found during the live migration assessment; superseded in v0.1.14 by keeping platform retirement outside automated cleanup.
+- Added reproducibility package guidance for sanitized JSON reports, screenshots, validation summaries, and cleanup audits.
+- Clarified the Databricks-to-AIDP row-count parity path: Azure Databricks `COUNT(*)`, OCI Object Storage CSV row count, and AIDP Workbench count must match.
+
+## What's New in v0.1.12
+
+- Standardized `.az/` as the project-local Azure context folder.
+- Documented `.az/cli/` as the preferred `AZURE_CONFIG_DIR` for Azure bootstrap.
+- Added Azure and Databricks placeholder env guidance with strict redaction rules.
+- Clarified that `.oci/` is only required for OCI/AIDP operations, not read-only Azure inventory.
+- Expanded ignore rules for Azure local state and credential files.
+
+## What's New in v0.1.11
+
+- Added `$aidp-azure-bootstrap` for read-only Azure CLI readiness and data-platform inventory.
+- Added Azure-to-AIDP mapping guidance for source systems, storage roots, orchestration, streaming, secret dependencies, and private networking.
+- Updated plugin metadata, keywords, and default prompts so Azure-to-AIDP migration bootstrap appears as a first-class workflow.
+
+## Install From GitHub
+
+Users can add the marketplace with any of these forms:
+
+```powershell
+codex plugin marketplace add jgangini/codex-plugin-oci-aidp-migration-workbench
+codex plugin marketplace add jgangini/codex-plugin-oci-aidp-migration-workbench@v0.1.15
+codex plugin marketplace add https://github.com/jgangini/codex-plugin-oci-aidp-migration-workbench.git
+```
+
+For local testing before publishing:
+
+```powershell
+git clone https://github.com/jgangini/codex-plugin-oci-aidp-migration-workbench.git
+cd codex-plugin-oci-aidp-migration-workbench
+codex plugin marketplace add .
+```
+
+Then open Codex, find **AIDP Migration Workbench** in the plugin list, install
+it if needed, and start a new thread so the plugin skills are loaded.
+
+## Upgrade
+
+```powershell
+codex plugin marketplace upgrade oci-aidp-migration-workbench
+```
+
+Pinned installs can be upgraded by changing the Git ref, for example from a
+tag to `main` or from `v0.1.14` to `v0.1.15` or a newer release tag.
+
+## Evidence and Reproducibility Standard
+
+Migration reports must distinguish between evidence types before claiming that
+a service was observed in a cloud console. Use real console screenshots for
+Azure Portal, Azure Databricks, OCI Console, and AIDP Workbench evidence. API,
+DOM, CLI, summarized, or generated images can support analysis, but they should
+not be captioned as real console captures.
+
+Persist evidence metadata with each report artifact whenever practical:
+
+```json
+{
+  "source_type": "azure_databricks|oci_console|aidp_workbench|cli|codex_chat",
+  "capture_method": "browser_screenshot|cli_json|api_json|manual_note",
+  "is_real_console": true,
+  "redaction_level": "none|user_only|sensitive_ids|strict",
+  "accepted_for_report": true
+}
+```
+
+For Azure Databricks to OCI/AIDP tests, retain the minimum reproducibility
+package:
+
+```text
+plugin_execution_summary.json
+plugin_cleanup_summary.json
+source_manifest.json
+migration_manifest.json
+aidp_workbench_gap_evaluation.json
+final_completion_audit.json
+codex_thread_plugin_validation_redacted.json
+```
+
+The functional validation result should compare the Azure Databricks joined
+table count, exported CSV row count, OCI Object Storage downloaded row count,
+and AIDP Workbench count. A run is accepted only when the absolute difference is
+zero and the cleanup evidence shows temporary resources were removed.
+
+## Marketplace Layout
+
+The marketplace entry lives at:
+
+```text
+.agents/plugins/marketplace.json
+```
+
+It exposes one plugin:
+
+```text
+plugins/oci-cli-workbench
+```
+
+The marketplace source path is intentionally relative:
+
+```json
+"path": "./plugins/oci-cli-workbench"
+```
+
+That keeps installation flexible across GitHub shorthand, HTTPS Git URLs, SSH
+Git URLs, pinned refs, and local clone workflows.
+
+## Skills
+
+- `oci-bootstrap-uv`: bootstrap and repair the local Python/uv OCI CLI toolchain.
+- `aidp-azure-bootstrap`: bootstrap `.az` Azure CLI readiness and inventory Azure data platforms.
+- `aidp-source-intake`: inspect `.source` and infer migration scope.
+- `aidp-source-manifest`: build and validate the medallion migration manifest.
+- `aidp-platform-bootstrap`: bootstrap AIDP projects and platforms.
+- `aidp-workbench-deploy`: render and sync notebooks into AIDP Workbench.
+- `aidp-runtime-validate`: compare manifests, buckets, runtime jobs, row-count parity, evidence metadata, and coverage.
+- `aidp-batch-stream-acceptance`: run batch and stream acceptance workflows.
+- `aidp-catalog-governance`: align Data Catalog glossary, taxonomy, and entities.
+- `aidp-object-storage-admin`: inspect and manage Object Storage layout.
+- `aidp-ops-recovery`: recover, cancel, clean up, monitor AIDP operations, and keep platform retirement outside automated cleanup.
+
+## Notes
+
+The internal plugin name remains `oci-cli-workbench` for compatibility with the
+existing Codex plugin package. The marketplace name is
+`oci-aidp-migration-workbench`.
+
+## License
+
+This project is licensed under the MIT License.
+
+AIDP Migration Workbench is an independent project and is not an official
+Oracle product. It is not affiliated with, endorsed by, or sponsored by Oracle
+Corporation. Oracle, OCI, and related marks are trademarks or registered
+trademarks of Oracle and/or its affiliates. Third-party trademarks, logos,
+service names, and assets remain the property of their respective owners.

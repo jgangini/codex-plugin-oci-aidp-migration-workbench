@@ -1,0 +1,7 @@
+interface:
+  display_name: "AIDP Source Manifest"
+  short_description: "Build and validate AIDP source manifests"
+  icon_small: "./assets/icon.svg"
+  icon_large: "./assets/logo.png"
+  brand_color: "#C74634"
+  default_prompt: "Use $aidp-source-manifest to validate a migration manifest, resolve process-date overrides, and build the AIDP source manifest."

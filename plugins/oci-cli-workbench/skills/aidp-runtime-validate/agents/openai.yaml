@@ -1,0 +1,7 @@
+interface:
+  display_name: "AIDP Runtime Validate"
+  short_description: "Validate live AIDP runtime coverage"
+  icon_small: "./assets/icon.svg"
+  icon_large: "./assets/logo.png"
+  brand_color: "#C74634"
+  default_prompt: "Use $aidp-runtime-validate to compare the uploaded source manifest, customer bucket inventory, target layers, and master catalog coverage for an AIDP run."
